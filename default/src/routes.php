@@ -14,3 +14,14 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
         'args' => $args
     ]);
 })->setName('index');
+
+$app->post('/login', function (Request $request, Response $response, array $args) {
+    // Sample log message
+    $this->logger->info("Slim-Skeleton '/login' route");
+    $parsedBody = $request->getParsedBody();
+    $parsedBody['isValide'] = ($parsedBody['email'] === "hichem@gmail.com" && $parsedBody['password'] ==="1234");
+
+
+        return $this->view->render($response, 'login.twig', [
+            'parsedBody' => $parsedBody]);
+});
